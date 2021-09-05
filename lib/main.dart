@@ -22,24 +22,42 @@ class MyPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: FlatButton(
-          onPressed: () { //스낵바는 context가 필요했음
-            flutterToast();
-          },
-          child: Text('Toast'),
-          color: Colors.blue,
-        ),
+       child: Center(
+         // child: Column(
+         child: Row(
+           // verticalDirection: VerticalDirection.up,
+           // mainAxisAlignment: MainAxisAlignment.center,
+           // mainAxisSize: MainAxisSize.min,
+           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+           // crossAxisAlignment: CrossAxisAlignment.end,
+           crossAxisAlignment: CrossAxisAlignment.stretch,
+           children: [
+             Container(
+               width: 100,
+               color: Colors.white,
+               child: Text('Container 1'),
+             ),
+              SizedBox(
+                width: 30.0,
+              ),
+              Container(
+                width: 100,
+                color: Colors.blue,
+                child: Text('Container 2'),
+              ),
+              Container(
+                width: 100,
+                color: Colors.red,
+                child: Text('Container 3'),
+              ),
+              // Container( // invisible container
+              //   width: double.infinity,
+              //   height: 20,
+              // )
+           ],
+         ),
+       ),
       ),
     );
   }
-}
-
-void flutterToast() {
-  Fluttertoast.showToast(msg: 'Flutter Toast Message!',
-    gravity: ToastGravity.BOTTOM,
-    backgroundColor: Colors.redAccent,
-    fontSize: 20.0,
-    textColor: Colors.white,
-    toastLength: Toast.LENGTH_SHORT
-  );
 }
