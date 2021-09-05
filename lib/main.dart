@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,9 +8,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Appbar',
-      theme: ThemeData(
-        primarySwatch: Colors.red
-      ),
       home: MyPage(),
     );
   }
@@ -20,34 +18,28 @@ class MyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Snack Bar'),
+        title: Text('Toast message'),
         centerTitle: true,
       ),
-      body: MySnackBar(),
+      body: Center(
+        child: FlatButton(
+          onPressed: () { //스낵바는 context가 필요했음
+            flutterToast();
+          },
+          child: Text('Toast'),
+          color: Colors.blue,
+        ),
+      ),
     );
   }
 }
 
-class MySnackBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: RaisedButton(
-        child: Text('Show me'),
-        onPressed: () {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text('Hello',
-            textAlign: TextAlign.right,
-            style: TextStyle(
-              color: Colors.white
-          ),
-          ),
-            backgroundColor: Colors.teal,
-            duration: Duration(milliseconds: 3000),
-          ),
-          );
-        },
-      ),
-    );
-  }
+void flutterToast() {
+  Fluttertoast.showToast(msg: 'Flutter Toast Message!',
+    gravity: ToastGravity.BOTTOM,
+    backgroundColor: Colors.redAccent,
+    fontSize: 20.0,
+    textColor: Colors.white,
+    toastLength: Toast.LENGTH_SHORT
+  );
 }
